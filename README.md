@@ -5,7 +5,7 @@
 
   `$ git clone https://github.com/holmanbph/deploy-vim.git`
   
-  `$ bash deploy-vim/install.sh`
+  `$ cd deploy-vim && bash install.sh`
 
 
 
