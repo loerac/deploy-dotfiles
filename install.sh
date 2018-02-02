@@ -5,5 +5,5 @@
 cp .vimrc ~/
 
 # Install any required dependencies
-/bin/bash install_dependencies.sh
+/bin/bash dependency_install.sh 
 
