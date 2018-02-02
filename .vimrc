@@ -33,3 +33,33 @@ set cursorline
 
 " shows matching brace
 set showmatch
+
+" the infamous ctrlP
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*.o,*.gif,*.jpb,*.png,.git,.svn,*.tmp
+
+" Vundle plugins
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Vundle plucing
+Plugin 'gmarik/Vundle.vim'
+
+" Add Syntastic plugin
+Plugin 'scrooloose/syntastic'
+
+call vundle#end()
+filetype plugin indent on
+
+"syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
