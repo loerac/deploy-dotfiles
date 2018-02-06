@@ -17,6 +17,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Color scheme
 colo slate
+colo peachpuff " looks nice with white background
 
 " Flag Whitespace
 "au BufRead,BufNewFile *.py,*.pyw,*.c,*.cpp,*.h,*.hpp,*.pl,*.java match BadWhitespace /\s\+$/
