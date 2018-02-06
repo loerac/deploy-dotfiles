@@ -1,7 +1,7 @@
 
 # get os-type to support debian AND centos
-if [ "$(. /etc/os-release; echo $NAME)" = "Ubuntu" ]; then
-	INSTALL='apt-get install'
+if [ awk -F= '/^ID_LIKE/{print $2}' /etc/os-release = "debian" ]; then
+      	INSTALL='apt-get install'
 else
 	INSTALL='yum install' 
 fi
