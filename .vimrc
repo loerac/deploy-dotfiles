@@ -12,6 +12,12 @@ let perl_extended_vars = 1    "syntax color complex things
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix encoding=utf-8
 let python_highlight_all=1
 
+" C
+autocmd FileType c setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix  nu
+
+" Cpp
+autocmd FileType cpp setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix  nu
+
 " Yaml specific
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -20,7 +26,8 @@ colo slate
 colo peachpuff " looks nice with white background
 
 " Flag Whitespace
-"au BufRead,BufNewFile *.py,*.pyw,*.c,*.cpp,*.h,*.hpp,*.pl,*.java match BadWhitespace /\s\+$/
+"autocmd *.py,*.pyw,*.c,*.cpp,*.h,*.hpp,*.pl,*.java, nu
+
 
 " Remove the netrw header
 let g:netrw_banner=0
