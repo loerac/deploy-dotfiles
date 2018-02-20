@@ -1,5 +1,5 @@
 # deploy-vim
-*an easy way to get my vim config installed on new Linux machines*
+*an easy way to get my dotfiles installed on new Linux machines*
 
 **To install the .vimrc file and dependencies run the following commands:**
 
@@ -9,20 +9,23 @@
 
 
 
-**Others can use this script as needed.  It is simple to make your own.**
+**Others can use this script as needed.  It is simple to make this valid for your own uses.**
 
 a.  Fork this project to make your own version of this repo
 
-b.  Simply replace my **.vimrc** with your own
+b.  Simply replace my dotfiles in this directory with your own
 
 c.  Add any dependency installations commands to the file **install_dependencies.sh**
 
 d.  Save these changes to your own repo 
 
-1. `$ git add .vimrc install_dependencies` 
+1. `$ git add *` 
 
 2. `$ git commit -m "my update"`
   
 3. `$ git push`
 
-e.  Clone from your own repo every time you need to install your vim config
+e.  Now your changes are stored on Github!
+
+f.  Clone from your own repo every time you need to install your vim config
+
