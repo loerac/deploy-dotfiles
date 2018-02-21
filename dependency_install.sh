@@ -25,7 +25,7 @@ elif [ "$FEDORA" -ne -1 ]; then
 # otherwise it's arch?
 else 
 	INSTALL='pacman -S' 
-	$YES=''
+	YES='--noconfirm'
 fi
 
 # install vim
