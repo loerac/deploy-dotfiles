@@ -1,7 +1,7 @@
-# deploy-vim
+# deploy-dotfiles
 *an easy way to get my dotfiles installed on new Linux machines*
 
-**To install the .vimrc file and dependencies run the following commands:**
+**To install dotfiles and dependencies run the following commands:**
 
   `$ git clone https://github.com/holmanbph/deploy-vim.git`
   
