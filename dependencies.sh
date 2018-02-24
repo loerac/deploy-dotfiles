@@ -37,6 +37,9 @@ eval "sudo $INSTALL tmux $YES"
 # install git
 eval "sudo $INSTALL git $YES"
 
+# instll ntpdate (for vm timesyncing)
+eval "sudo $INSTALL ntpdate $YES"
+
 # Example for installing Vundle, the Vim dependency manager
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/ctrlpvim/ctrlp.vim.git  ~/.vim/bundle/ctrlp.vim
