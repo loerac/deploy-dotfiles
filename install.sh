@@ -5,7 +5,7 @@
 echo "copying dotfiles...   "
 cp .vimrc ~/
 cp .tmux.conf ~/
-echo .bashrc >> ~/.bashrc
+cat .bashrc >> ~/.bashrc
 
 echo "[dotfiles copied]"
 
