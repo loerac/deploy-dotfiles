@@ -3,9 +3,12 @@ set vb
 
 filetype on
 
+" Bash Specific
+autocmd FileType sh set ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
+autocmd FileType sh set nu
+
 " Perl Specific
-autocmd FileType perl set nu
-autocmd FileType perl set number
+autocmd FileType perl set nu ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
 let perl_extended_vars = 1    "syntax color complex things 
 
 " Python
@@ -14,15 +17,15 @@ autocmd FileType python set number
 let python_highlight_all=1
 
 " C
-autocmd FileType c setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix  nu
+autocmd FileType c setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix  
 autocmd FileType c set number
 
 " Cpp
-autocmd FileType cpp setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix  nu
+autocmd FileType cpp setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix 
 autocmd FileType cpp set number
 
 " Yaml specific
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab autoindent fileformat=unix
 autocmd FileType yaml set number
 
 " Color scheme
