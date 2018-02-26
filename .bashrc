@@ -13,4 +13,4 @@ fi
 
 # Additions from deploy-dotfiles
 alias timesync='ntpdate -b pool.ntp.org'
-(timesync& )  > /dev/null
+export timesync
