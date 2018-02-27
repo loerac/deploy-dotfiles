@@ -63,14 +63,12 @@ set wildignore+=*.o,*.gif,*.jpb,*.png,.git,.svn,*.tmp
 set rtp+=~/.vim/bundle/Vundle.vim
 filetype plugin indent on
 
-" Statusline
-" https://shapeshed.com/vim-statuslines
-function! StatuslineGit()
-	let l:branchname = GitBranch()
-	return strlen(l:branchname) > 0?' '.l:branchname.' ':''
-endfunction
 
-" modifying the statusline
+""
+" Statusline
+""
+
+" statusline content and spacing
 set laststatus=2
 set statusline=
 set statusline+=\ %F
@@ -78,10 +76,10 @@ set statusline+=%m
 set statusline+=%=
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
 set statusline+=\  
 
+" statusline
 hi statusline guibg=Red ctermfg=1 guifg=Black ctermbg=159
 
