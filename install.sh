@@ -19,6 +19,7 @@ echo "Setup git settings? [y/n]"
 read git_conf
 git_conf=$(echo "$git_conf" | awk '{print tolower($0)}')
 
+# Git config
 if [ "y" == "$git_conf" ]; then
 	echo "Enter user.name: "
 	read name
