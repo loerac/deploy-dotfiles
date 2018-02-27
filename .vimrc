@@ -71,13 +71,12 @@ filetype plugin indent on
 " statusline content and spacing
 set laststatus=2
 set statusline=
-set statusline+=\ %F
-set statusline+=%m
-set statusline+=%=
-set statusline+=\ %y
+set statusline+=\ %F    	" filepath
+set statusline+=%m		" modified?
+set statusline+=%= 		" spaces
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
+set statusline+=\ %p%%		" percent 
+set statusline+=\ %l:%c		" line:column
 set statusline+=\  
 
 " statusline
