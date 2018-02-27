@@ -70,13 +70,12 @@ function! StatuslineGit()
 	return strlen(l:branchname) > 0?' '.l:branchname.' ':''
 endfunction
 
-
+" modifying the statusline
 set laststatus=2
 set statusline=
 set statusline+=\ %F
 set statusline+=%m
 set statusline+=%=
-"set statusline+=%#CursorColumn#
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
@@ -84,5 +83,5 @@ set statusline+=\ %p%%
 set statusline+=\ %l:%c
 set statusline+=\  
 
-hi statusline guibg=Red ctermfg=1 guifg=Black ctermbg=15
+hi statusline guibg=Red ctermfg=1 guifg=Black ctermbg=159
 
