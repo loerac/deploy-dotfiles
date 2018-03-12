@@ -6,6 +6,12 @@ echo "copying dotfiles...   "
 cp .vimrc ~/
 cp .tmux.conf ~/
 cat .bashrc >> ~/.bashrc
+cp .Xdefaults ~/
+
+# i3 setup
+mkdir ~/.config/i3/config -p
+mkdir ~/Downloads -p
+echo "exec --nostartup-id feh --bg-scale ~/Downloads/wall.jpg" >> ~/.config/i3/config
 
 echo "[dotfiles copied]"
 
@@ -27,5 +33,5 @@ if [ "y" == "$git_conf" ]; then
 	read email
 	git config --global user.name "$name"
 	git config --global user.email "$email"
-
+    echo "[git settings setup]"
 fi

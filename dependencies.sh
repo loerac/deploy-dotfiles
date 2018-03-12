@@ -46,6 +46,12 @@ eval "sudo $INSTALL tmux $YES"
 # install git
 eval "sudo $INSTALL git $YES"
 
+# install i3 and other dependencies
+eval "sudo $INSTALL i3 i3status dmenu i3lock xbacklight feh conky $YES"
+
+# install urxvt
+eval "sudo $INSTALL rxvt-unicode $YES"
+
 # instll ntpdate (for vm timesyncing)
 #eval "sudo $INSTALL ntpdate $YES"
 
