@@ -8,7 +8,10 @@ strindex() {
 
 # get os-type to select multiple package managers
 ID_LIKE=`awk -F= '/^ID_LIKE/{print $2}' /etc/os-release` 
+ID=`awk -F= '/^ID/{print $2}' /etc/os-release` 
+VERSION_ID=`awk -F= '/^VERSION_ID/{print $2}' /etc/os-release` 
 
+# Get the distro family 
 DEBIAN=`strindex "$ID_LIKE" 'debian'`
 FEDORA=`strindex "$ID_LIKE" 'fedora'`
 
@@ -18,7 +21,7 @@ if [ "$DEBIAN" -ne -1 ]; then
 	YES='-y'
 
 # if fedora based
-elif [ "$FEDORA" -ne -1 ]; then 
+elif [ "$FEDORA" -ne -1 ] || [ "$ID" == "fedora" ]; then 
 	INSTALL='yum install'
 	YES='-y'
 
@@ -27,6 +30,12 @@ else
 	INSTALL='pacman -S' 
 	YES='--noconfirm'
 fi
+
+# fedora 22 and later uses dnf
+if [ "$ID" == "fedora" ]  && [ "$VERSION_ID" -ge "22" ]; then
+	INSTALL='dnf install'
+	YES='-y'
+fi	
 
 # install vim
 eval "sudo $INSTALL vim $YES"
