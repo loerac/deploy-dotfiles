@@ -29,6 +29,10 @@ autocmd FileType cpp set number
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab autoindent fileformat=unix
 autocmd FileType yaml set number
 
+"Markdown
+autocmd BufNewFile,BufRead,BufFilePre, *.md,*.markdown,*.mdown,*.mkd,*.mdwn,*.md set filetype=markdown
+autocmd FileType markdown set number
+
 " Color scheme
 colo peachpuff " looks nice with white background
 
