@@ -7,6 +7,7 @@ cp .vimrc ~/
 cp .tmux.conf ~/
 cat .bashrc >> ~/.bashrc
 cp .Xdefaults ~/
+cp .printActiveIP.sh ~/
 
 # i3 setup
 mkdir ~/.config/i3/config -p
