@@ -17,9 +17,15 @@ echo "exec --nostartup-id feh --bg-scale ~/Downloads/wall.jpg" >> ~/.config/i3/c
 echo "[dotfiles copied]"
 
 # Install any required dependencies
-echo "installing dependencies...   "
-/bin/bash dependencies.sh 
-echo "[dependencies installed]"
+echo "install applications from dependencies.sh? [y/n]"
+read install
+install=$(echo "$install" | awk '{print tolower($0)}')
+
+if [ "y" == "$install" ]; then
+	echo "installing dependencies...   "
+	/bin/bash dependencies.sh 
+	echo "[dependencies installed]"
+fi
 
 # Setup git config
 echo "Setup git settings? [y/n]"
