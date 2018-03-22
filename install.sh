@@ -9,14 +9,16 @@ cat .bashrc >> ~/.bashrc
 cp .Xdefaults ~/
 cp .printActiveIP.sh ~/
 
+echo "Success! [dotfiles copied]"
+echo 
 
 # i3 setup
+echo "setting up i3 configs..."
 mkdir ~/.config/i3/ -p 
 cp wall.jpg ~/.config/i3
-echo "exec --nostartup-id feh --bg-scale ~/.config/i3/wall.jpg" >> ~/.config/i3/config
-
-echo "Success! [dotfiles copied]"
-echo ""
+cp config ~/.config/i3
+echo "Success! [i3 config copied]"
+echo
 
 # Install any required dependencies
 echo -n "install applications from dependencies.sh? [y/n] "
