@@ -8,7 +8,7 @@ autocmd FileType sh set ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
 autocmd FileType sh set nu
 
 " Perl Specific
-autocmd FileType perl ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
+autocmd FileType perl set ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
 autocmd FileType perl set nu
 let perl_extended_vars = 1    "syntax color complex things 
 
