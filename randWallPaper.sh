@@ -8,11 +8,13 @@
 
 
 regex="jpg$"
+whoami=$(whoami)
+dir="/home/$whoami/.config/i3/"
 wallPaperNum=0
 wallPaperArr=()
 
 # Check pwd for jpgs
-for file in $(ls); do
+for file in $(ls $dir); do
     
     # Check for the file extension ".jpg"
     if [[ $file =~ $regex ]]; then
@@ -22,4 +24,5 @@ for file in $(ls); do
 done
 
 index=$((RANDOM % $wallPaperNum ))
-feh --bg-scale ~/.config/i3/${wallPaperArr[$index]}
+wallpaper="$dir${wallPaperArr[$index]}"
+feh --bg-scale $wallpaper
