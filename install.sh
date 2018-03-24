@@ -15,8 +15,10 @@ echo
 # i3 setup
 echo "setting up i3 configs..."
 mkdir ~/.config/i3/ -p 
+mkdir ~/bin/ -p 
 cp wall.jpg ~/.config/i3
 cp config ~/.config/i3
+cp randWallPaper.sh ~/bin
 echo "Success! [i3 config copied]"
 echo
 
