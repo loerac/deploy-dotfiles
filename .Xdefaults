@@ -4,3 +4,7 @@ URxvt.tintColor: 	white
 URxvt.shading:		40
 URxvt*foreground:	white
 URxvt*background:	black
+
+# Font stuff
+URxvt.font: xft:arial::size=11
+URxvt.letterSpace: -5
