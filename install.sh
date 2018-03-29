@@ -8,7 +8,7 @@ cp .tmux.conf ~/
 cat .bashrc >> ~/.bashrc
 cp .Xdefaults ~/
 cp .printActiveIP.sh ~/
-
+cp .i3status.conf ~/
 echo "Success! [dotfiles copied]"
 echo 
 
