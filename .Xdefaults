@@ -8,3 +8,4 @@ URxvt*background:	black
 # Font stuff
 URxvt.font: xft:arial::size=11
 URxvt.letterSpace: -3
+URxvt.perl-ext-common:selection-to-clipboard
