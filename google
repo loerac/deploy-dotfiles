@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+##
+# Name: Google
+# Author: Brett Holman
+# Date: 3-30-3018
+# Description: This is intended to be run from dmenu 
+# or the command line.  It launches firefox with the 
+# desired google query, sending minimal info in the search.
+##
+
+# Forms the search query
+SEARCH="$1"
+COUNT="$#"
+while [[ $COUNT -gt 1 ]]; do
+    shift
+	SEARCH="$SEARCH+$1"
+    COUNT=$((COUNT-1))
+done
+
+# Build URL using search query (url gives Google less 
+# info than they typically get)
+URL="https://www.google.com/search?q=$SEARCH"
+
+# Run in background
+(firefox -new-window $URL) &

@@ -27,8 +27,8 @@ elif [ "$FEDORA" -ne -1 ] || [ "$ID" == "fedora" ]; then
 
 # if suse based
 elif [ "$SUSE" -ne -1 ]; then
-    INSTALL='zypper install'
-    YES='-y'
+    INSTALL='zypper install -y'
+    YES=''
 
 
 # otherwise its arch?

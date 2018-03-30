@@ -8,17 +8,18 @@ cp .tmux.conf ~/
 cat .bashrc >> ~/.bashrc
 cp .Xdefaults ~/
 cp .printActiveIP.sh ~/
-cp .i3status.conf ~/
+mkdir ~/bin/ -p 
+cp google ~/bin/
 echo "Success! [dotfiles copied]"
 echo 
 
 # i3 setup
 echo "setting up i3 configs..."
 mkdir ~/.config/i3/ -p 
-mkdir ~/bin/ -p 
-cp wall.jpg ~/.config/i3
+cp 1.jpg ~/.config/i3
 cp config ~/.config/i3
 cp randWallPaper.sh ~/bin
+cp .i3status.conf ~/
 echo "Success! [i3 config copied]"
 echo
 
