@@ -1,4 +1,3 @@
-
 # Returns -1 if not subset
 strindex() { 
   x="${1%%$2*}"
@@ -14,18 +13,25 @@ VERSION_ID=`awk -F= '/^VERSION_ID/{print $2}' /etc/os-release`
 # Get the distro family 
 DEBIAN=`strindex "$ID_LIKE" 'debian'`
 FEDORA=`strindex "$ID_LIKE" 'fedora'`
+SUSE=`strindex "$ID_LIKE" 'suse'
 
 # if debian based
 if [ "$DEBIAN" -ne -1 ]; then
       	INSTALL='apt-get install'
 	YES='-y'
 
-# if fedora based
+# if fedora/redhat/centos based
 elif [ "$FEDORA" -ne -1 ] || [ "$ID" == "fedora" ]; then 
 	INSTALL='yum install'
 	YES='-y'
 
-# otherwise it's arch?
+# if suse based
+elif [ "$SUSE" -ne -1 ]; then
+    INSTALL='zypper install'
+    YES='-y'
+
+
+# otherwise its arch?
 else 
 	INSTALL='pacman -S' 
 	YES='--noconfirm'
