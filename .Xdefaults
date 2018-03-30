@@ -7,4 +7,4 @@ URxvt*background:	black
 
 # Font stuff
 URxvt.font: xft:arial::size=11
-URxvt.letterSpace: -5
+URxvt.letterSpace: -3
