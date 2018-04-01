@@ -15,11 +15,12 @@ echo
 
 # i3 setup
 echo "setting up i3 configs..."
-mkdir ~/.config/i3/ -p 
-cp 1.jpg ~/.config/i3
-cp config ~/.config/i3
-cp randWallPaper.sh ~/bin
-cp .i3status.conf ~/
+mkdir ~/.config/i3/ -p                  # i3 config directory
+cp 1.jpg ~/.config/i3                   # starter wallpaper
+cp config ~/.config/i3                  # i3 core config
+cp randWallPaper.sh ~/bin               # wallpaper randomizer
+cp .i3status.conf ~/                    # status conf
+cp mac.conf /etc/NetworkManager/conf.d/ # mac address randomization
 echo "Success! [i3 config copied]"
 echo
 
