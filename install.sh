@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Copy the dotfiles
 echo -n "copying dotfiles...   " 
 cp .vimrc ~/
@@ -48,6 +47,7 @@ if [ "y" == "$git_conf" ]; then
     echo ""
 	echo -n "Enter user.email: " 
 	read email
+    echo ""
 	echo -n "Enter core.editor: " 
 	read editor
     echo ""
