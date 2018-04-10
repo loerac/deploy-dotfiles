@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Copy the dotfiles
 echo -n "copying dotfiles...   " 
 cp .vimrc ~/
@@ -50,7 +49,11 @@ if [ "y" == "$git_conf" ]; then
 	echo -n "Enter user.email: " 
 	read email
     echo ""
+	echo -n "Enter core.editor: " 
+	read editor
+    echo ""
 	git config --global user.name "$name"
 	git config --global user.email "$email"
+	git config --global core.editor "$editor"
     echo "Success! [git settings setup]"
 fi
