@@ -7,9 +7,10 @@ cp .tmux.conf ~/
 cat .bashrc >> ~/.bashrc
 cp .Xdefaults ~/
 cp .printActiveIP.sh ~/
-cp .git_clone.sh ~/
 mkdir ~/bin/ -p 
 cp google ~/bin/
+cp .bkup.sh ~/bin/
+cp .git_clone.sh ~/bin/
 echo "Success! [dotfiles copied]"
 echo 
 
