@@ -57,3 +57,4 @@ if [ "y" == "$git_conf" ]; then
 	git config --global core.editor "$editor"
     echo "Success! [git settings setup]"
 fi
+source $HOME/.bashrc
