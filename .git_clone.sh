@@ -2,6 +2,8 @@
 
 git="git clone https://github.com/"
 #git="url/"
-rep="$1"
-git="$git$rep"
+user="$1"
+rep="$2"
+git="$git$user/$rep.git"
 $git
+cd $PWD/$rep
