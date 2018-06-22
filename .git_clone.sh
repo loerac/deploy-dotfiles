@@ -6,4 +6,4 @@ user="$1"
 rep="$2"
 git="$git$user/$rep.git"
 $git
-cd $PWD/$rep
+mkcd $rep
