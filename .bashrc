@@ -21,6 +21,21 @@ PS1="[\[${COLOR_CYAN}\]\u\[${COLOR_NC}\]:\[${COLOR_YELLOW}\]\W\[${COLOR_NC}\]] \
 
 # User specific aliases and functions
 
+# exports
+mkcd() {
+    mkdir -p $1 && cd -P $1
+}
+cl() {
+    cd $1
+    if [ 2 -eq $# ]; then
+        ls $2
+    else
+        ls
+    fi
+}
+export mkcd
+export cl
+
 # Listing (ls)
 alias ll="ls -l"
 alias la="ls -A"
@@ -56,7 +71,6 @@ alias m="tmux"
 # Bash Scripts
 alias gitclone=". $HOME/bin/./.git_clone.sh"
 alias bkup="$HOME/bin/./.bkup.sh"
-alias bd_="$HOME/bin/./.bd.sh"
 
 # Matlab
 alias matwab="$HOME/Matlab/bin/./matlab"
