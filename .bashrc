@@ -44,9 +44,10 @@ alias el="exa -l"
 alias eg="exa -G"
 
 # Going back one directory
-alias bd="cd .."
-alias db="cd .."
-alias dbd="cd .."
+alias bd="cl .."
+alias db="cl .."
+alias dbd="cl .."
+alias cd="cl"
 
 # Exiting
 alias x="exit"
