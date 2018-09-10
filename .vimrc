@@ -4,7 +4,7 @@ set vb
 filetype on
 
 " Bash Specific
-autocmd FileType sh set ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
+"autocmd FileType sh set ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
 autocmd FileType sh set nu
 
 " Perl Specific
@@ -18,10 +18,11 @@ autocmd FileType python set number
 let python_highlight_all=1
 
 " C
-autocmd FileType c setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
+autocmd FileType c setlocal expandtab autoindent fileformat=unix
 autocmd FileType c set number
+autocmd FileType c setlocal sts=3 ts=3 sw=3
 
-" Cpp
+" C++
 autocmd FileType cpp setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
 autocmd FileType cpp set number
 
@@ -33,9 +34,16 @@ autocmd FileType rs set number
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab autoindent fileformat=unix
 autocmd FileType yaml set number
 
+" XSD
+autocmd FileType xsd setlocal ts=2 sts=2 sw=2 expandtab autoindent fileformat=unix
+autocmd FileType xsd set number
+
 "Markdown
 autocmd BufNewFile,BufRead,BufFilePre, *.md,*.markdown,*.mdown,*.mkd,*.mdwn,*.md set filetype=markdown
 autocmd FileType markdown set number
+
+" Remove trailing whitespace
+autocmd FileType c,cpp autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Color scheme
 colo darkblue " looks nice with white background
@@ -67,19 +75,21 @@ set wildignore+=*.o,*.gif,*.jpb,*.png,.git,.svn,*.tmp
 ""
 " Statusline
 ""
-
 " statusline content and spacing
 set laststatus=2
 set statusline=
 set statusline+=%=              " spaces
 set statusline+=%*\[
 set statusline+=%m              " modified?
-set statusline+=\ %f            " filepath
+set statusline+=\ %t            " filepath
 set statusline+=\ %p%%          " percent
-"set statusline+=\ %l:%c                " line:column
+set statusline+=\ %l:%c                " line:column
 set statusline+=\]
 "set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 
 " statusline
 hi statusline guibg=Blue ctermfg=144 guifg=Black ctermbg=Black
 hi Comment ctermfg=LightBlue
+
+noremap <expr> k ((line('.')==1)?'':'k')
+noremap <expr> j ((line('.')==line('$'))?'':'j')
