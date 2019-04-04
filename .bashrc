@@ -45,7 +45,8 @@ igrep() {
    grep ${4} ${1} ${dir} --color=${color} | grep -v "Binary file\|\.svn\|cscope\|${filter}"                                                                                                                                                                                            
 }                                                                                                                                                                                                                                                                                
 csr() {
-   find ${1}/* -type f \( -name *.c -o -name *.h -o -name *.te -o -name *.if -o -name *.fc \) > ${1}/cscope.files
+   [[ "${1}" == "" ]] && DIR=$PWD || DIR=${1}
+   find ${DIR}/* -type f \( -name *.c -o -name *.h -o -name *.te -o -name *.if -o -name *.fc \) > ${DIR}/cscope.files
    cscope -b
 } 
 
