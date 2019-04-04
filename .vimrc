@@ -43,7 +43,7 @@ autocmd BufNewFile,BufRead,BufFilePre, *.md,*.markdown,*.mdown,*.mkd,*.mdwn,*.md
 autocmd FileType markdown set number
 
 " Remove trailing whitespace
-autocmd FileType c,cpp autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,sh autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Color scheme
 colo darkblue " looks nice with white background
@@ -59,6 +59,13 @@ set cursorline
 
 " shows matching brace
 set showmatch
+
+" Abbreviations
+abbr 1cmt /*
+abbr 2cmt */
+abbr cmt /**/<Left><Left>
+abbr scmt /*<CR> *<CR>*/<Up>
+abbr bcmt /**<CR> *<CR>**/<Up>
 
 " have Vim jump to the last position when reopening a file
 if  has("autocmd")
