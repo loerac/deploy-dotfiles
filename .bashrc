@@ -33,27 +33,26 @@ cl() {
         ls
     fi
 }
-svndiff() {                                                                                                                                                                                                                                                                      
-   svn diff $@ | colordiff | less -R;                                                                                                                                                                                                                                            
-}                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                 
-igrep() {                                                                                                                                                                                                                                                                        
-   [[ "${2}" = "" ]] && dir=. || dir=${2}                                                                                                                                                                                                                                        
-   [[ "${3}" = "" ]] && color=always || color=${3}                                                                                                                                                                                                                               
-   [[ "${4}" = "" ]] && exp="-rn" || exp="${4}"                                                                                                                                                                                                                                  
-   [[ "${5}" = "" ]] && filter="" || filter="\|${5}"                                                                                                                                                                                                                               
-   grep ${exp} ${1} ${dir} --color=${color} | grep -v "Binary file\|\.svn\|cscope${filter}"                                                                                                                                                                                            
-}                                                                                                                                                                                                                                                                                
+svndiff() {
+   svn diff $@ | colordiff | less -R;
+}
+igrep() {
+   [[ "${2}" = "" ]] && dir=. || dir=${2}
+   [[ "${3}" = "" ]] && color=always || color=${3}
+   [[ "${4}" = "" ]] && exp="-rn" || exp="${4}"
+   [[ "${5}" = "" ]] && filter="" || filter="\|${5}"
+   grep ${exp} "${1}" ${dir} --color=${color} | grep -v "Binary file\|\.svn\|cscope${filter}"
+}
 csr() {
    [[ "${1}" == "" ]] && DIR=$PWD || DIR=${1}
    find ${DIR}/* -type f \( -name *.c -o -name *.h -o -name *.te -o -name *.if -o -name *.fc \) > ${DIR}/cscope.files
    cscope -b
-} 
+}
 
 export mkcd
 export cl
-export svndiff                                                                                                                                                                                                                                                                   
-export igrep                                                                                                                                                                                                                                                                     
+export svndiff
+export igrep
 export csr
 
 # Listing (ls)
