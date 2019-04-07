@@ -1,19 +1,19 @@
 # Returns -1 if not subset
-strindex() { 
+strindex() {
   x="${1%%$2*}"
   [[ "$x" = "$1" ]] && echo -1 || echo "${#x}"
 }
 
 
 # get os-type to select multiple package managers
-ID_LIKE=`awk -F= '/^ID_LIKE/{print $2}' /etc/os-release` 
-ID=`awk -F= '/^ID/{print $2}' /etc/os-release` 
-VERSION_ID=`awk -F= '/^VERSION_ID/{print $2}' /etc/os-release` 
+ID_LIKE=`awk -F= '/^ID_LIKE/{print $2}' /etc/os-release`
+ID=`awk -F= '/^ID/{print $2}' /etc/os-release`
+VERSION_ID=`awk -F= '/^VERSION_ID/{print $2}' /etc/os-release`
 
-# Get the distro family 
+# Get the distro family
 DEBIAN=`strindex "$ID_LIKE" 'debian'`
 FEDORA=`strindex "$ID_LIKE" 'fedora'`
-SUSE=`strindex "$ID_LIKE" 'suse'
+SUSE=`strindex "$ID_LIKE" 'suse'`
 
 # if debian based
 if [ "$DEBIAN" -ne -1 ]; then
@@ -21,7 +21,7 @@ if [ "$DEBIAN" -ne -1 ]; then
 	YES='-y'
 
 # if fedora/redhat/centos based
-elif [ "$FEDORA" -ne -1 ] || [ "$ID" == "fedora" ]; then 
+elif [ "$FEDORA" -ne -1 ] || [ "$ID" == "fedora" ]; then
 	INSTALL='yum install'
 	YES='-y'
 
@@ -32,8 +32,8 @@ elif [ "$SUSE" -ne -1 ]; then
 
 
 # otherwise its arch?
-else 
-	INSTALL='pacman -S' 
+else
+	INSTALL='pacman -S'
 	YES='--noconfirm'
 fi
 
@@ -41,7 +41,7 @@ fi
 if [ "$ID" == "fedora" ]  && [ "$VERSION_ID" -ge "22" ]; then
 	INSTALL='dnf install'
 	YES='-y'
-fi	
+fi
 
 # install vim
 eval "sudo $INSTALL vim $YES"
@@ -68,7 +68,7 @@ eval "sudo $INSTALL NetworkManager-tui  $YES"
 #eval "sudo $INSTALL ntpdate $YES"
 
 # install cscope
-eval "sudo $INSTALL cscope $YES"
+#eval "sudo $INSTALL cscope $YES"
 
 # Example for installing Vundle, the Vim dependency manager
 git clone https://github.com/ctrlpvim/ctrlp.vim.git  ~/.vim/bundle/ctrlp.vim
