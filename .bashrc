@@ -51,6 +51,24 @@ csr() {
    find ${DIR}/* -type f \( -name *.c -o -name *.h -o -name *.te -o -name *.if -o -name *.fc \) > ${DIR}/cscope.files
    cscope -b
 }
+gclone() {
+    if [ $# -eq 1 ]; then
+        CLONE="${1}"
+        DIR_GIT=${CLONE##*/}
+        DIR=${DIR_GIT%.git}
+
+        mkdir -p ${DIR}
+        if [ $? -eq 0 ]; then
+            git clone ${1} ${DIR}
+            cd ${DIR}
+        else
+            echo "Making directory ${DIR} failed..."
+        fi
+    else
+        echo "Usage: gclone [Github Repo]"
+        echo "Github Repo: https://github.com/[repo]"
+    fi
+}
 
 export mkcd
 export cl
@@ -58,40 +76,41 @@ export gitdiff
 export svndiff
 export igrep
 export csr
+export gclone
 
 # Listing (ls)
 alias ll="ls -l"
-alias la="ls -A"
-alias al="ls -Al"
-alias el="exa -l"
-alias eg="exa -G"
+alias la="ls -a"
+alias al="ls -al"
 
 # Going back one directory
+alias cd="cl"
 alias bd="cl .."
 alias db="cl .."
 alias dbd="cl .."
-alias cd="cl"
+
+# Updating
+alias yum="sudo pacman"
+alias yummy="sudo pacman -Syu"
+alias aup="yaourt -Syu --aur"
+alias upbashrc="vim ~/.bashrc && source ~/.bashrc"
+alias grubup="sudo update-grud"
 
 # Exiting
 alias x="exit"
 alias bye="echo \"bye hot stuff\"; sleep 0.25; exit"
 
 # GNU Compiler
-alias gp="g++ -o"
-alias gc="gcc -o"
+alias gp="g++ -Wall -Werror -o"
+alias gc="gcc -Wall -Werror  -o"
 
 # Remove
 alias rmd="rm -rf"
-
-# Yum
-alias yum="sudo pacman"
-alias yummy="sudo pacman -Sy"
 
 # Tmux
 alias m="tmux"
 
 # Bash Scripts
-alias gitclone=". $HOME/bin/./.git_clone.sh"
 alias bkup="$HOME/bin/./.bkup.sh"
 
 # Shutdown
