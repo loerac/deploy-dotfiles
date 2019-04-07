@@ -36,10 +36,28 @@ cl() {
 gitdiff() {
     git diff --color=always | less -r
 }
+svndiff() {
+   svn diff $@ | colordiff | less -R;
+}
+igrep() {
+   [[ "${2}" = "" ]] && dir=. || dir=${2}
+   [[ "${3}" = "" ]] && color=always || color=${3}
+   [[ "${4}" = "" ]] && exp="-rn" || exp="${4}"
+   [[ "${5}" = "" ]] && filter="" || filter="\|${5}"
+   grep ${exp} "${1}" ${dir} --color=${color} | grep -v "Binary file\|\.svn\|cscope${filter}"
+}
+csr() {
+   [[ "${1}" == "" ]] && DIR=$PWD || DIR=${1}
+   find ${DIR}/* -type f \( -name *.c -o -name *.h -o -name *.te -o -name *.if -o -name *.fc \) > ${DIR}/cscope.files
+   cscope -b
+}
 
 export mkcd
 export cl
 export gitdiff
+export svndiff
+export igrep
+export csr
 
 # Listing (ls)
 alias ll="ls -l"
@@ -76,13 +94,11 @@ alias m="tmux"
 alias gitclone=". $HOME/bin/./.git_clone.sh"
 alias bkup="$HOME/bin/./.bkup.sh"
 
-# Matlab
-alias matwab="$HOME/Matlab/bin/./matlab"
-
 # Shutdown
 alias dieCow="sudo shutdown -h now"
 #alias python=python3
 
 # Random
-alias who_is_the_man="echo \"You're man\""
+alias who_is_the_man="echo \"You're the man\""
 alias password_me_please="pwgen 20 1"
+alias sl="sl -alFe"

@@ -64,8 +64,11 @@ eval "sudo $INSTALL rxvt-unicode $YES"
 # install nmtui
 eval "sudo $INSTALL NetworkManager-tui  $YES"
 
-# instll ntpdate (for vm timesyncing)
+# install ntpdate (for vm timesyncing)
 #eval "sudo $INSTALL ntpdate $YES"
+
+# install cscope
+eval "sudo $INSTALL cscope $YES"
 
 # Example for installing Vundle, the Vim dependency manager
 git clone https://github.com/ctrlpvim/ctrlp.vim.git  ~/.vim/bundle/ctrlp.vim

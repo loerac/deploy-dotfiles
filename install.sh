@@ -1,26 +1,41 @@
 #!/bin/bash
 
+check_error() {
+	if [ $? -ne 0 ]; then
+		echo "ERROR: ${1}"
+		exit 1
+	fi
+}
+
+WORKING_DIR=${HOME}
+BIN_PATH=${WORKING_DIR}/.bin
+i3_PATH=${WORKING_DIR}/.config/i3
+
 # Copy the dotfiles
 echo -n "copying dotfiles...   " 
-cp .vimrc ~/
-cp .tmux.conf ~/
-cat .bashrc >> ~/.bashrc
-cp .Xdefaults ~/
-cp .printActiveIP.sh ~/
-mkdir ~/bin/ -p 
-cp google ~/bin/
-cp .bkup.sh ~/bin/
-cp .git_clone.sh ~/bin/
+cp .vimrc ${WORKING_DIR}
+cp .tmux.conf ${WORKING_DIR}
+cat .bashrc >> ${WORKING_DIR}/.bashrc
+cp .Xdefaults ${WORKING_DIR}
+cp .printActiveIP.sh ${WORKING_DIR}
+mkdir -p ${BIN_PATH}
+check_error "Failed to make directory ${BIN_PATH}"
+
+cp google ${BIN_PATH}
+cp .bkup.sh ${BIN_PATH}
+cp .git_clone.sh ${BIN_PATH}
 echo "Success! [dotfiles copied]"
 echo 
 
 # i3 setup
 echo "setting up i3 configs..."
-mkdir ~/.config/i3/ -p                  # i3 config directory
-cp 1.jpg ~/.config/i3                   # starter wallpaper
-cp config ~/.config/i3                  # i3 core config
-cp randWallPaper.sh ~/bin               # wallpaper randomizer
-cp .i3status.conf ~/                    # status conf
+mkdir -p ${i3_PATH}                     # i3 config directory
+check_error "Failed to make directory ${i3_PATH}"
+
+cp 1.jpg ${i3_PATH}                     # starter wallpaper
+cp config ${i3_PATH}                    # i3 core config
+cp randWallPaper.sh ${BIN_PATH}         # wallpaper randomizer
+cp .i3status.conf ${WORKING_DIR}        # status conf
 cp mac.conf /etc/NetworkManager/conf.d/ # mac address randomization
 echo "Success! [i3 config copied]"
 echo
@@ -40,10 +55,10 @@ fi
 # Setup git config
 echo -n "Setup git settings? [y/n] "
 read git_conf
-git_conf=$(echo "$git_conf" | awk '{print tolower($0)}')
+git_conf=$(echo "${git_conf}" | awk '{print tolower($0)}')
 
 # Git config
-if [ "y" == "$git_conf" ]; then
+if [ "y" == "${git_conf}" ]; then
 	echo -n "Enter user.name: " 
 	read name
     echo ""
@@ -58,4 +73,5 @@ if [ "y" == "$git_conf" ]; then
 	git config --global core.editor "$editor"
     echo "Success! [git settings setup]"
 fi
+
 source $HOME/.bashrc
