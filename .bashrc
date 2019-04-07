@@ -33,8 +33,13 @@ cl() {
         ls
     fi
 }
+gitdiff() {
+    git diff --color=always | less -r
+}
+
 export mkcd
 export cl
+export gitdiff
 
 # Listing (ls)
 alias ll="ls -l"
@@ -61,10 +66,8 @@ alias gc="gcc -o"
 alias rmd="rm -rf"
 
 # Yum
-alias yum="sudo yum"
-alias yummy="sudo yum install"
-alias dnffy="sudo dnf install"
-alias pippy="sudo pip install"
+alias yum="sudo pacman"
+alias yummy="sudo pacman -Sy"
 
 # Tmux
 alias m="tmux"
