@@ -59,8 +59,8 @@ gclone() {
 
         mkdir -p ${DIR}
         if [ $? -eq 0 ]; then
-            git clone ${1} ${DIR}
-            cd ${DIR}
+            git clone ${CLONE} ${DIR}
+            cd -P ${DIR}
         else
             echo "Making directory ${DIR} failed..."
         fi
