@@ -48,7 +48,19 @@ igrep() {
 }
 csr() {
    [[ "${1}" == "" ]] && DIR=$PWD || DIR=${1}
-   find ${DIR}/* -type f \( -name *.c -o -name *.h -o -name *.te -o -name *.if -o -name *.fc \) > ${DIR}/cscope.files
+   
+   #TODO: Maybe add bitwise notation for these three states
+   
+   # C Files
+   find ${DIR}/* -type f \( -name *.c -o -name *.h \) >> ${DIR}/cscope.files
+
+   # SELinux Files
+   find ${DIR}/* -type f \( -name '*.te' -o -name '*.if' -o -name '*.fc' \) >> ${DIR}/cscope.files
+
+   # Makefile files                                                                                                                                                                                                                                                              
+   find ${DIR}/* -type f \( -name '*.make' -o -name 'Makefile' \) >> ${DIR}/cscope.files
+   
+   # Build cscope.file
    cscope -b
 }
 gclone() {
