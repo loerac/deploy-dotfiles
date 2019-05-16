@@ -102,7 +102,7 @@ val() {
             fi  
         fi  
 
-        # Only run valgrind if removing if no errors occured
+        # Only run valgrind if no errors occured
         if [ 0 -eq ${failed} ]; then
             valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=${FILE_NAME} ${EXECUTABLE}
 
