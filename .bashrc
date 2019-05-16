@@ -81,6 +81,39 @@ gclone() {
         echo "Github Repo: https://github.com/[repo]"
     fi
 }
+val() {
+    if [ $# -eq 1 ]; then
+        failed=0
+        EXECUTABLE=${1}
+        FILE_NAME="valgrind_${EXECUTABLE#"./"}.txt"
+
+        # Check if valgrind file already exist
+        if [ -f ${FILE_NAME} ]; then
+
+            # Delete pre-existing valgrind file
+            echo "Removing existing '${FILE_NAME}'"
+            rm ${FILE_NAME}
+            if [ ! $? -eq 0 ]; then
+                # Removing the file failed. Not allowing
+                # to run valgrind since this might
+                # require root privalges
+                echo "Removing existing '${FILE_NAME}' failed..."
+                failed=1
+            fi  
+        fi  
+
+        # Only run valgrind if removing if no errors occured
+        if [ 0 -eq ${failed} ]; then
+            valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=${FILE_NAME} ${EXECUTABLE}
+
+            echo
+            echo "Result is saved in ${FILE_NAME}"
+        fi  
+    else
+        echo "Usage: val [executable]"                                                                                                                                                                                                                                          
+        echo "executable: The executable file that Valgrind will use. (Preferably in this notation './exe')"
+    fi  
+}
 
 export mkcd
 export cl
@@ -89,6 +122,7 @@ export svndiff
 export igrep
 export csr
 export gclone
+export val
 
 # Listing (ls)
 alias ll="ls -l"
