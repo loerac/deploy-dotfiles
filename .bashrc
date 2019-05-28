@@ -52,7 +52,7 @@ csr() {
    #TODO: Maybe add bitwise notation for these three states
    
    # C Files
-   find ${DIR}/* -type f \( -name *.c -o -name *.h \) >> ${DIR}/cscope.files
+   find ${DIR}/* -type f \( -name '*.c' -o -name '*.h' \) > ${DIR}/cscope.files
 
    # SELinux Files
    find ${DIR}/* -type f \( -name '*.te' -o -name '*.if' -o -name '*.fc' \) >> ${DIR}/cscope.files
