@@ -48,18 +48,18 @@ igrep() {
 }
 csr() {
    [[ "${1}" == "" ]] && DIR=$PWD || DIR=${1}
-   
+
    #TODO: Maybe add bitwise notation for these three states
-   
+
    # C Files
    find ${DIR}/* -type f \( -name '*.c' -o -name '*.h' \) > ${DIR}/cscope.files
 
    # SELinux Files
    find ${DIR}/* -type f \( -name '*.te' -o -name '*.if' -o -name '*.fc' \) >> ${DIR}/cscope.files
 
-   # Makefile files                                                                                                                                                                                                                                                              
+   # Makefile files
    find ${DIR}/* -type f \( -name '*.make' -o -name 'Makefile' \) >> ${DIR}/cscope.files
-   
+
    # Build cscope.file
    cscope -b
 }
@@ -99,8 +99,8 @@ val() {
                 # require root privalges
                 echo "Removing existing '${FILE_NAME}' failed..."
                 failed=1
-            fi  
-        fi  
+            fi
+        fi
 
         # Only run valgrind if no errors occured
         if [ 0 -eq ${failed} ]; then
@@ -108,11 +108,29 @@ val() {
 
             echo
             echo "Result is saved in ${FILE_NAME}"
-        fi  
+        fi
     else
-        echo "Usage: val [executable]"                                                                                                                                                                                                                                          
-        echo "executable: The executable file that Valgrind will use. (Preferably in this notation './exe')"
-    fi  
+        echo "Usage: val [executable]"
+        echo "executable: The executable file that Valgrind will use. (Preferably in this notation './exe' or it will not work)"
+    fi
+}
+bd() {
+    cd_num=1
+
+    # Passing an integer with 'bd' will act as how
+    # many times to go back a directory
+    if [ ! -z ${1} ]; then
+        cd_num=${1}
+
+        # Check if value given is not valid
+        regex='^[0-9]+$'
+        if ! [[ ${cd_num} =~ ${regex} ]]; then
+            cd_num=1
+        fi
+    fi
+    for (( i=0; i<cd_num; i++ )); do
+        cd ..
+    done
 }
 
 export mkcd
@@ -123,15 +141,15 @@ export igrep
 export csr
 export gclone
 export val
+export bd
 
 # Listing (ls)
 alias ll="ls -l"
-alias la="ls -a"
-alias al="ls -al"
+alias la="ls -A"
+alias al="ls -Al"
 
 # Going back one directory
 alias cd="cl"
-alias bd="cl .."
 alias db="cl .."
 alias dbd="cl .."
 
