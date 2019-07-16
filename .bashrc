@@ -23,12 +23,15 @@ PS1="[\[${COLOR_CYAN}\]\u\[${COLOR_NC}\]:\[${COLOR_YELLOW}\]\W\[${COLOR_NC}\]] \
 
 # exports
 mkcd() {
-    mkdir -p $1 && cd -P $1
+    mkdir -p ${1} && cd -P ${1}
+}
+mvcd() {
+    mv ${1} ${2} && cd ${2} && ls
 }
 cl() {
-    cd $1
+    cd ${1}
     if [ 2 -eq $# ]; then
-        ls $2
+        ls ${2}
     else
         ls
     fi
