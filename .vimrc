@@ -36,6 +36,14 @@ autocmd FileType rs set number
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab autoindent fileformat=unix
 autocmd FileType yaml set number
 
+" XSD specific
+autocmd FileType xsd setlocal ts=2 sts=2 sw=2 expandtab autoindent fileformat=unix
+autocmd FileType xsd set number
+
+" XML specific
+autocmd FileType xml setlocal ts=3 sts=3 sw=3 expandtab autoindent fileformat=unix
+autocmd FileType xml set number
+
 " JSON specific
 autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab autoindent fileformat=unix
 autocmd FileType json set number
@@ -96,12 +104,19 @@ syntax enable
 " statusline content and spacing
 set laststatus=2
 set statusline=
+set statusline+=\ [
+set statusline+=\ %l    	" Line number
+set statusline+=\ --
+set statusline+=\ %p%%          " percent
+set statusline+=\ ]
+set statusline+=\ %{LinterStatus()}
 set statusline+=%=              " spaces
 set statusline+=%*\[
-set statusline+=%m              " modified?
+set statusline+=\ %m		" modified?
 set statusline+=\ %f            " filepath
-set statusline+=\ %p%%          " percent
-set statusline+=\]
+set statusline+=\ --
+set statusline+=\ %{strftime(\"%y.%m.%d\ %H:%M\")}	" Display time (a.k.a last time file was saved)
+set statusline+=\ ]
 
 hi statusline guibg=Blue ctermfg=144 guifg=Black ctermbg=Black
 " }}}
@@ -143,5 +158,76 @@ autocmd BufWritePre * %s/\s\+$//e
 
 set wildignore=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=*.o,*.gif,*.jpb,*.png,.git,.svn,*.tmp
-" }}}
 " vim:foldmethod=marker:foldlevel=0
+" }}}
+" Bundles {{{
+"-=================================================-
+" NOTE: This section is commented out since most of
+" these bundles need to be installed. They are not
+" part of the install.sh script so they need to be
+" installed manually.
+"-=================================================-
+
+" Rust ( curl https://sh.rustup.rs -sSf | sh )
+"-=================================================-
+"set hidden
+"let g:racer_cmd = "~/.cargo/bin/racer"
+"let g:racer_experimental_completer = 1
+"let g:racer_insert_paren = 1
+"autocmd FileType rust nmap gd <Plug>(rust-def)
+"autocmd FileType rust nmap gs <Plug>(rust-def-split)
+"autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
+"autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" Ctrl P ( https://github.com/kien/ctrlp.vim.git )
+"-=================================================-
+"set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" Change the default mapping and default command to invoke CtrlP
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+
+" Nerd Tree ( https://github.com/scrooloose/nerdtree.git )
+"-=================================================-
+"set runtimepath+=~/.vim/bundle/nerdtree
+"let NERDTreeMinimalUI = 1
+"let NERDTreeDirArrows = 1
+"let g:NERDTreeWinPos = "right"
+"map <C-o> :NERDTreeToggle<CR>
+
+" Open NERDTree on start and switch to other windows
+"autocmd vimenter * NERDTree
+"autocmd vimenter * wincmd p
+
+" Close vim if NERDTree is the last window open
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Asynchronous Lint Engine ( https://github.com/w0rp/ale.git )
+"-=================================================-
+"set runtimepath+=~/.vim/bundle/ale
+"let g:ale_open_list = 1
+"let g:ale_lint_on_save = 1
+"let g:ale_lint_on_text_changed = 0
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" Vim multiple cursors ( https://github.com/terryma/vim-multiple-cursors.git )
+"-=================================================-
+"set runtimepath+=~/.vim/bundle/vim_multiple_cursors
+"let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+"let g:multi_cursor_start_word_key      = '<C-n>'
+"let g:multi_cursor_select_all_word_key = '<A-n>'
+"let g:multi_cursor_start_key           = 'g<C-n>'
+"let g:multi_cursor_select_all_key      = 'g<A-n>'
+"let g:multi_cursor_next_key            = '<C-n>'
+"let g:multi_cursor_prev_key            = '<C-p>'
+"let g:multi_cursor_skip_key            = '<C-x>'
+"let g:multi_cursor_quit_key            = '<Esc>'
+
+" Fuzzy Finder ( https://github.com/junegunn/fzf.git )
+"-=================================================-
+"set runtimepath+=~/.fzf
+"map <C-f> :FZF<CR>
+" }}}
