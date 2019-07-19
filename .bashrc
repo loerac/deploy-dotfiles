@@ -126,14 +126,19 @@ bd() {
         cd_num=${1}
 
         # Check if value given is not valid
-        regex='^[0-9]+$'
+        regex='^[1-9]+$'
         if ! [[ ${cd_num} =~ ${regex} ]]; then
+            echo "Invalid value ${1}"
             cd_num=1
         fi
     fi
+    back="../"
+    back_total=""
     for (( i=0; i<cd_num; i++ )); do
-        cd ..
+        back_total=${back_total}${back}
     done
+
+    cd ${back_total} && ls
 }
 
 export mkcd
@@ -169,7 +174,7 @@ alias bye="echo \"bye hot stuff\"; sleep 0.25; exit"
 
 # GNU Compiler
 alias gp="g++ -Wall -Werror -o"
-alias gc="gcc -Wall -Werror  -o"
+alias gc="gcc -Wall -Werror -o"
 
 # Remove
 alias rmd="rm -rf"
