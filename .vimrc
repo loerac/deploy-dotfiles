@@ -101,6 +101,16 @@ let g:netrw_banner=0
 syntax enable
 " }}}
 " Statusline {{{
+function! LinterStatus() abort
+   let l:counts = ale#statusline#Count(bufnr(''))
+   let l:all_errors = l:counts.error + l:counts.style_error
+   let l:all_non_errors = l:counts.total - l:all_errors
+   return l:counts.total == 0 ? '' : printf(
+   \ '<< W:%d E:%d >>',
+   \ l:all_non_errors,
+   \ l:all_errors
+   \)
+endfunction
 " statusline content and spacing
 set laststatus=2
 set statusline=
@@ -123,7 +133,7 @@ hi statusline guibg=Blue ctermfg=144 guifg=Black ctermbg=Black
 " Abbreviations {{{
 abbr cmt /* <CR> *<CR>*/<UP>
 abbr scmt /**/<Left><Left>
-abbr bcmt /**********************************************<CR> *<CR>**********************************************/<UP>
+abbr bcmt /**<CR> *<CR> **/<UP>
 abbr typds typedef struct {<CR>};<UP><END><Left><Left>
 abbr typde typedef enum {<CR>};<UP><END><Left><Left>
 abbr #i #include <><Left>
