@@ -28,6 +28,10 @@ autocmd FileType c set number
 autocmd FileType cpp setlocal ts=3 sts=3 sw=3 expandtab autoindent fileformat=unix
 autocmd FileType cpp set number
 
+" Go
+autocmd FileType go setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
+autocmd FileType go set number
+
 " Rust
 autocmd FileType rs setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
 autocmd FileType rs set number
@@ -37,11 +41,11 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab autoindent fileformat=u
 autocmd FileType yaml set number
 
 " XSD specific
-autocmd FileType xsd setlocal ts=2 sts=2 sw=2 expandtab autoindent fileformat=unix
+autocmd FileType xsd setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
 autocmd FileType xsd set number
 
 " XML specific
-autocmd FileType xml setlocal ts=3 sts=3 sw=3 expandtab autoindent fileformat=unix
+autocmd FileType xml setlocal ts=4 sts=4 sw=4 expandtab autoindent fileformat=unix
 autocmd FileType xml set number
 
 " JSON specific
@@ -83,6 +87,37 @@ nnoremap ^ <nop>
 
 " highlight last inserted text
 nnoremap gV `[v`]
+
+" Quickly replace all tabs with spaces
+nnoremap <leader><Space> :%s/<Tab>/  /g<CR>
+
+" Quickly source .vimrc
+nnoremap <leader>r :source $MYVIMRC<CR>
+
+" Quickly quit editting without save
+nnoremap <leader>q :q!<CR>
+
+" Saves the file (handling the permission-denied error)
+cnoremap w!! w !sudo tee % >/dev/null
+
+" Indent entire file according to the definition of tabs
+"=======================================================
+" Indent and  go to the top
+nnoremap gt gg=G
+" Indent and stay keep cursor where it currently is
+nnoremap gs mmgg=G'm
+
+" Select all text
+nnoremap vA ggVG
+
+" Quick Save
+nmap <S-s> :w<CR>
+
+" Yank to end of line
+nnoremap Y y$
+
+"Delete to the end of line
+nnoremap D d$
 
 " toggle gundo
 nnoremap <F5> :GundoToggle<CR>
@@ -133,7 +168,7 @@ hi statusline guibg=Blue ctermfg=144 guifg=Black ctermbg=Black
 " Abbreviations {{{
 abbr cmt /* <CR> *<CR>*/<UP>
 abbr scmt /**/<Left><Left>
-abbr bcmt /**<CR> *<CR> **/<UP>
+abbr bcmt /**<CR> *<CR>**/<UP>
 abbr typds typedef struct {<CR>};<UP><END><Left><Left>
 abbr typde typedef enum {<CR>};<UP><END><Left><Left>
 abbr #i #include <><Left>
@@ -162,6 +197,12 @@ set writebackup
 if  has("autocmd")
          au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+" Shift to the next round tab stop.
+set shiftround
+
+" Set auto indent spacing.
+set shiftwidth=3
 
 " Remove trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
@@ -250,4 +291,8 @@ if &diff
   highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 endif
 
+nnoremap <Left>  :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up>    :echoe "Use k"<CR>
+nnoremap <Down>  :echoe "Use j"<CR>
 

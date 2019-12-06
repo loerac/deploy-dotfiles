@@ -14,7 +14,7 @@ export COLOR_YELLOW='\e[1;33m'
 export COLOR_LIGHT_GRAY='\e[0;37m'
 
 # User
-PS1="[\[${COLOR_CYAN}\]\u\[${COLOR_NC}\]:\[${COLOR_YELLOW}\]\W\[${COLOR_NC}\]] \[${COLOR_LIGHT_GREEN}\]→\[${COLOR_LIGHT_GRAY}\] "
+PS1="\[${COLOR_NC}\][\[${COLOR_CYAN}\]\u\[${COLOR_NC}\]:\[${COLOR_YELLOW}\]\W\[${COLOR_NC}\]] \[${COLOR_LIGHT_GREEN}\]→\[${COLOR_LIGHT_GRAY}\] "
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -23,15 +23,23 @@ PS1="[\[${COLOR_CYAN}\]\u\[${COLOR_NC}\]:\[${COLOR_YELLOW}\]\W\[${COLOR_NC}\]] \
 
 # exports
 mkcd() {
-    mkdir -p ${1} && cd -P ${1}
+    mkdir -p $1 && cd -P $1
 }
 mvcd() {
-    mv ${1} ${2} && cd ${2} && ls
+    DIR="${@: -1}"
+    ARGC=$#
+    ARGC=$((ARGC - 1))
+    ARGV=($@)
+
+    for (( i=0; i<ARGC; i++)); do
+        mv ${ARGV[i]} ${DIR}
+    done
+    cd ${DIR} && ls
 }
 cl() {
-    cd ${1}
+    cd $1
     if [ 2 -eq $# ]; then
-        ls ${2}
+        ls $2
     else
         ls
     fi
@@ -88,7 +96,9 @@ val() {
     if [ $# -eq 1 ]; then
         failed=0
         EXECUTABLE=${1}
-        FILE_NAME="valgrind_${EXECUTABLE#"./"}.txt"
+        FILENAME=$(basename -- "${EXECUTABLE}")
+        EXTENSION="${FILENAME##*.}"
+        FILE_NAME="valgrind_${FILENAME%.*}.txt"
 
         # Check if valgrind file already exist
         if [ -f ${FILE_NAME} ]; then
@@ -140,8 +150,23 @@ bd() {
 
     cd ${back_total} && ls
 }
+cnew() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: ${0} <DIRECTORY> <BIN/LIB>"
+    fi
+    DIRECTORY=${1}
+    TEMPLATE=${2}
+
+    cargo new ${DIRECTORY} --${TEMPLATE}
+    if [ $? -eq 0 ]; then
+        echo
+        cd ${DIRECTORY} && ls
+        rm -rf src/*.rs
+    fi
+}
 
 export mkcd
+export mvcd
 export cl
 export gitdiff
 export svndiff
@@ -150,11 +175,13 @@ export csr
 export gclone
 export val
 export bd
+export cnew
 
 # Listing (ls)
 alias ll="ls -l"
 alias la="ls -A"
 alias al="ls -Al"
+alias lh="ls -lh"
 
 # Going back one directory
 alias cd="cl"
@@ -174,7 +201,7 @@ alias bye="echo \"bye hot stuff\"; sleep 0.25; exit"
 
 # GNU Compiler
 alias gp="g++ -Wall -Werror -o"
-alias gc="gcc -Wall -Werror -o"
+alias gc="gcc -Wall -Werror -fstack-protector -o"
 
 # Remove
 alias rmd="rm -rf"
@@ -194,3 +221,8 @@ alias who_is_the_man="echo \"You're the man\""
 alias password_me_please="pwgen 20 1"
 alias sl="sl -alFe"
 alias please="sudo"
+
+# Fuzzy Finder
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#alias fzfp="fzf --preview='head -$LINES {}'"
+
