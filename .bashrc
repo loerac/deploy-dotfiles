@@ -14,7 +14,8 @@ export COLOR_YELLOW='\e[1;33m'
 export COLOR_LIGHT_GRAY='\e[0;37m'
 
 # User
-PS1="\[${COLOR_NC}\][\[${COLOR_CYAN}\]\u\[${COLOR_NC}\]:\[${COLOR_YELLOW}\]\W\[${COLOR_NC}\]] \[${COLOR_LIGHT_GREEN}\]→\[${COLOR_LIGHT_GRAY}\] "
+#PS1="\[${COLOR_NC}\][\[${COLOR_CYAN}\]\u\[${COLOR_NC}\]:\[${COLOR_YELLOW}\]\W\[${COLOR_NC}\]] \[${COLOR_LIGHT_GREEN}\]→\[${COLOR_LIGHT_GRAY}\] "
+PS1="\n${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ "
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -35,6 +36,9 @@ mvcd() {
         mv ${ARGV[i]} ${DIR}
     done
     cd ${DIR} && ls
+}
+cpcd() {
+    cp ${1} ${2} && cd ${2} && ls
 }
 cl() {
     cd $1
@@ -65,6 +69,12 @@ csr() {
    # C Files
    find ${DIR}/* -type f \( -name '*.c' -o -name '*.h' \) > ${DIR}/cscope.files
 
+   # C++ Files
+   find ${DIR}/* -type f \( -name '*.c++' -o -name '*.h++' \) >> ${DIR}/cscope.files
+
+   # Go Files
+   find ${DIR}/* -type f -name '*.go' >> ${DIR}/cscope.files
+
    # SELinux Files
    find ${DIR}/* -type f \( -name '*.te' -o -name '*.if' -o -name '*.fc' \) >> ${DIR}/cscope.files
 
@@ -75,10 +85,10 @@ csr() {
    cscope -b
 }
 gclone() {
-    if [ $# -eq 1 ]; then
+    if [ ${#} -ge 1 ]; then
         CLONE="${1}"
         DIR_GIT=${CLONE##*/}
-        DIR=${DIR_GIT%.git}
+        [[ ${#} -eq 2 ]] && DIR=${2} || DIR=${DIR_GIT%.git}
 
         mkdir -p ${DIR}
         if [ $? -eq 0 ]; then
@@ -165,6 +175,15 @@ cnew() {
     fi
 }
 
+# Set up a working directory to navigate to
+set-my-wkdir() {
+	[[ $# -eq 0 ]] && SET_HOME=${PWD} || SET_HOME=${1}
+	export TMHOME=${SET_HOME}
+}
+take-me-wkdir() {
+	cd ${TMHOME} && ls ${1}
+}
+
 export mkcd
 export mvcd
 export cl
@@ -189,11 +208,14 @@ alias db="cl .."
 alias dbd="cl .."
 
 # Updating
-alias yum="sudo pacman"
-alias yummy="sudo pacman -Syu"
-alias aup="yaourt -Syu --aur"
+alias yum="sudo apt"
+alias yummy="sudo apt install"
+
+# Manjaro
+#alias aup="yaourt -Syu --aur"
+#alias grubup="sudo update-grud"
+
 alias upbashrc="vim ~/.bashrc && source ~/.bashrc"
-alias grubup="sudo update-grud"
 
 # Exiting
 alias x="exit"
