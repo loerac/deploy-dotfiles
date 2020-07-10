@@ -113,6 +113,9 @@ nnoremap vA ggVG
 " Quick Save
 nmap <S-s> :w<CR>
 
+" Quite all files with saving
+nmap <S-a> :wqa<CR>
+
 " Yank to end of line
 nnoremap Y y$
 
@@ -154,7 +157,7 @@ set statusline+=\ %l    	" Line number
 set statusline+=\ --
 set statusline+=\ %p%%          " percent
 set statusline+=\ ]
-set statusline+=\ %{LinterStatus()}
+"set statusline+=\ %{LinterStatus()}
 set statusline+=%=              " spaces
 set statusline+=%*\[
 set statusline+=\ %m		" modified?
@@ -264,7 +267,7 @@ set wildignore+=*.o,*.gif,*.jpb,*.png,.git,.svn,*.tmp
 
 " Vim multiple cursors ( https://github.com/terryma/vim-multiple-cursors.git )
 "-=================================================-
-"set runtimepath+=~/.vim/bundle/vim_multiple_cursors
+"set runtimepath+=~/.vim/bundle/vim-multiple-cursors
 "let g:multi_cursor_use_default_mapping=0
 
 " Default mapping
