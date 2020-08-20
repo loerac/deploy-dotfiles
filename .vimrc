@@ -113,6 +113,9 @@ nnoremap vA ggVG
 " Quick Save
 nmap <S-s> :w<CR>
 
+" Quite all files with saving
+nmap <S-a> :wqa<CR>
+
 " Yank to end of line
 nnoremap Y y$
 

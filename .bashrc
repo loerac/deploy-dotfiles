@@ -1,6 +1,6 @@
 # .bashrc
 
-HISTCONTROL=ignorespace
+HISTCONTROL=$HISTCONTROL:ignorespace
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
