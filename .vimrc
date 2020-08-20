@@ -284,6 +284,14 @@ set wildignore+=*.o,*.gif,*.jpb,*.png,.git,.svn,*.tmp
 "-=================================================-
 "set runtimepath+=~/.fzf
 "map <C-f> :FZF<CR>
+
+" Gundo ( https://github.com/sjl/gundo.vim.git )
+"-=================================================-
+"set runtimepath+=~/.vim/bundle/gundo.vim
+"if has('python3')
+"	let g:gundo_prefer_python3 = 1
+"endif
+"nnoremap <F5> :GundoToggle<CR>
 " }}}
 
 if &diff
