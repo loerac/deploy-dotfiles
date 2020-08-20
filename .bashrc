@@ -71,6 +71,7 @@ csr() {
 
    # C++ Files
    find ${DIR}/* -type f \( -name '*.c++' -o -name '*.h++' \) >> ${DIR}/cscope.files
+   find ${DIR}/* -type f \( -name '*.cpp' -o -name '*.hpp' \) >> ${DIR}/cscope.files
 
    # Go Files
    find ${DIR}/* -type f -name '*.go' >> ${DIR}/cscope.files
@@ -160,20 +161,6 @@ bd() {
 
     cd ${back_total} && ls
 }
-cnew() {
-    if [ "$#" -ne 2 ]; then
-        echo "Usage: ${0} <DIRECTORY> <BIN/LIB>"
-    fi
-    DIRECTORY=${1}
-    TEMPLATE=${2}
-
-    cargo new ${DIRECTORY} --${TEMPLATE}
-    if [ $? -eq 0 ]; then
-        echo
-        cd ${DIRECTORY} && ls
-        rm -rf src/*.rs
-    fi
-}
 
 # Set up a working directory to navigate to
 set-my-wkdir() {
@@ -184,17 +171,16 @@ take-me-wkdir() {
 	cd ${TMHOME} && ls ${1}
 }
 
-export mkcd
-export mvcd
-export cl
-export gitdiff
-export svndiff
-export igrep
-export csr
-export gclone
-export val
-export bd
-export cnew
+#export mkcd
+#export mvcd
+#export cl
+#export gitdiff
+#export svndiff
+#export igrep
+#export csr
+#export gclone
+#export val
+#export bd
 
 # Listing (ls)
 alias ll="ls -l"
