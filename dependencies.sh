@@ -56,20 +56,24 @@ eval "sudo $INSTALL git $YES"
 eval "sudo $INSTALL htop $YES"
 
 # install i3 and other dependencies
-eval "sudo $INSTALL i3 i3status dmenu i3lock xbacklight feh conky $YES"
+#eval "sudo $INSTALL i3 i3status dmenu i3lock xbacklight feh conky $YES"
 
 # install urxvt
-eval "sudo $INSTALL rxvt-unicode $YES"
+#eval "sudo $INSTALL rxvt-unicode $YES"
 
 # install nmtui
-eval "sudo $INSTALL NetworkManager-tui  $YES"
+#eval "sudo $INSTALL NetworkManager-tui  $YES"
 
 # install ntpdate (for vm timesyncing)
 #eval "sudo $INSTALL ntpdate $YES"
 
 # install cscope
-#eval "sudo $INSTALL cscope $YES"
+eval "sudo $INSTALL cscope $YES"
 
 # Example for installing Vundle, the Vim dependency manager
 git clone https://github.com/ctrlpvim/ctrlp.vim.git  ~/.vim/bundle/ctrlp.vim
-
+git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+git clone https://github.com/w0rp/ale.git ~/.vim/bundle/ale
+git clone https://github.com/terryma/vim-multiple-cursors.git ~/.vim/bundle/vim-multiple-cursors
+git clone https://github.com/junegunn/fzf.git  ~/.fzf
+git clone https://github.com/sjl/gundo.vim.git  ~/.vim/bundle/gundo.vim
