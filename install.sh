@@ -67,9 +67,13 @@ if [ "y" == "${git_conf}" ]; then
 	echo -n "Enter core.editor: "
 	read editor
     echo ""
+    	echo -n "Enter help.autocorrect: "
+	read auto_time
+    echo ""
 	git config --global user.name "$name"
 	git config --global user.email "$email"
 	git config --global core.editor "$editor"
+	git config --global help.autocorrect "$auto_time"
     echo "Success! [git settings setup]"
 fi
 
