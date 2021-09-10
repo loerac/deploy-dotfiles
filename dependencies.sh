@@ -77,3 +77,4 @@ git clone https://github.com/w0rp/ale.git ~/.vim/bundle/ale
 git clone https://github.com/terryma/vim-multiple-cursors.git ~/.vim/bundle/vim-multiple-cursors
 git clone https://github.com/junegunn/fzf.git  ~/.fzf
 git clone https://github.com/sjl/gundo.vim.git  ~/.vim/bundle/gundo.vim
+git clone https://github.com/jeetsukumaran/vim-indentwise.git  ~/.vim/bundle/vim-indentwise

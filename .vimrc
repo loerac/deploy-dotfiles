@@ -292,6 +292,20 @@ set wildignore+=*.o,*.gif,*.jpb,*.png,.git,.svn,*.tmp
 "	let g:gundo_prefer_python3 = 1
 "endif
 "nnoremap <F5> :GundoToggle<CR>
+
+" Vim-Indentwise (https://github.com/jeetsukumaran/vim-indentwise.git)
+"-=================================================-
+"set runtimepath+=~/.vim/bundle/vim-indentwise
+"map -pl <Plug>(IndentWisePreviousLesserIndent)
+"map -pe <Plug>(IndentWisePreviousEqualIndent)
+"map -pg <Plug>(IndentWisePreviousGreaterIndent)
+"map -nl <Plug>(IndentWiseNextLesserIndent)
+"map -ne <Plug>(IndentWiseNextEqualIndent)
+"map -ng <Plug>(IndentWiseNextGreaterIndent)
+"map -pa <Plug>(IndentWisePreviousAbsoluteIndent)
+"map -na <Plug>(IndentWiseNextAbsoluteIndent)
+"map -bb <Plug>(IndentWiseBlockScopeBoundaryBegin)
+"map -be <Plug>(IndentWiseBlockScopeBoundaryEnd)
 " }}}
 
 if &diff
