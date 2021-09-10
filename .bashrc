@@ -217,9 +217,6 @@ alias rmd="rm -rf"
 # Tmux
 alias m="tmux"
 
-# Bash Scripts
-alias bkup="$HOME/bin/./.bkup.sh"
-
 # Shutdown
 alias dieCow="sudo shutdown -h now"
 #alias python=python3
