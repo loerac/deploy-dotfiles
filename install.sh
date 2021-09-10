@@ -22,7 +22,6 @@ cat .bashrc >> ${WORKING_DIR}/.bashrc
 mkdir -p ${BIN_PATH}
 check_error "Failed to make directory ${BIN_PATH}"
 
-cp .git_clone.sh ${BIN_PATH}
 echo "Success! [dotfiles copied]"
 echo
 
