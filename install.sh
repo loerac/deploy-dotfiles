@@ -16,7 +16,8 @@ echo -n "copying dotfiles...   "
 cp .vimrc ${WORKING_DIR}
 cp -r .vim/ ${WORKING_DIR}
 cp .tmux.conf ${WORKING_DIR}
-cat .bashrc >> ${WORKING_DIR}/.bashrc
+#cat .bashrc >> ${WORKING_DIR}/.bashrc
+cat .zshrc >> ${WORKING_DIR}/.zshrc
 #cp .Xdefaults ${WORKING_DIR}
 #cp .printActiveIP.sh ${WORKING_DIR}
 mkdir -p ${BIN_PATH}
