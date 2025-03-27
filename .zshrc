@@ -67,7 +67,8 @@ ZSH_THEME="kphoen"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# plugins=(git zsh-syntax-highlighting zsh-autocomplete)
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -151,6 +152,13 @@ gclone () {
       echo "Github Repo: https://github.com/[repo]"
    fi
 }
+co () {
+   BRANCH=$(git branch | fzf-tmux)
+   [[ -n ${BRANCH} ]] && git checkout ${BRANCH##*( )}
+}
+gbranch () {
+   git branch | fzf
+}
 csr() {
    [[ "${1}" == "" ]] && DIR=$PWD || DIR=${1}
 
@@ -210,11 +218,11 @@ old_bd () {
 bd () {
    CD_NUM=1
    if [ ! -z ${1} ]; then
-   	CD_NUM=$1
+      CD_NUM=$1
       if [[ -z "${CD_NUM}" || ! "${CD_NUM}" =~ ^[0-9]+$ ]]; then
-          echo "Usage: bd <number of dirs>"
-          return 1
-       fi
+	 echo "Usage: bd <number of dirs>"
+	 return 1
+      fi
    fi
 
    bd_cmd=""
@@ -224,9 +232,16 @@ bd () {
 
    cd "${bd_cmd}" && ls
 }
+fftp () {
+   fzf-tmux --preview="bat --color=always {}"
+}
+vif () {
+   VFILE=$(fzf --preview='bat --color=always {}')
+   [[ -n ${VFILE} ]] && echo "${VFILE}" && vim "${VFILE}"
+}
 set-my-wkdir () {
-[[ $# -eq 0 ]] && SET_HOME=${PWD} || SET_HOME=${1}
-export TMHOME=${SET_HOME}
+   [[ $# -eq 0 ]] && SET_HOME=${PWD} || SET_HOME=${1}
+   export TMHOME=${SET_HOME}
 }
 take-me-wkdir () {
 cd ${TMHOME} && ls
@@ -253,9 +268,33 @@ set -o vi
 # Tmux Window
 alias TMUX_THREE="tmux new-session -s three_window_sessions -n main \; split-window -h \; split-window -v"
 
+# fd
+alias rf="fd --type f --hidden --exclude .git | fzf-tmux --preview='bat --color=always {}' | xargs -o vim"
+alias uzf="fd -e zip -x unzip"
+change_ext () {
+   if [[ $# -lt 2 ]]; then
+      echo "Usage: change_ext <orig> <mod>"
+      return 1
+   fi
+
+   ORIG_EXT="${1}"
+   MOD_EXT="${2}"
+   fd -e ${ORIG_EXT} -x convert {} {.}.${MOD_EXT}
+}
+export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_DEFAULT_OPTS="--ansi"
+
+my_ip () {
+    dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"'
+}
+json_clip_pp() {
+    pbpaste | sed "s/'/\"/g" | json_pp
+}
+
 # Fuzzy Finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# [ -f ~/.fzf/bin/fzf ] && source ~/.fzf/bin/fzf
 
 eval "$(zoxide init --cmd cd zsh)"
 z() {
