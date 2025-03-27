@@ -126,10 +126,10 @@ nnoremap vA ggVG
 " Quick save
 nmap <S-s> :w<CR>
 
-" Quite all files with saving
+" Quick save all files
 nmap <S-a> :wa<CR>
 
-" Quite all files with saving and exit
+" Quick save all files and exit
 nmap <S-a> :wqa<CR>
 
 " Yank to end of line
@@ -255,6 +255,8 @@ Plug 'nvie/vim-flake8'
 Plug 'w0rp/ale'
 Plug 'davidhalter/jedi-vim'
 Plug 'vim-autoformat/vim-autoformat'
+Plug 'pixelneo/vim-python-docstring'
+Plug 'c64cosmin/Harpwn'
 
 call plug#end()
 
@@ -358,8 +360,9 @@ map -i <C-v>g<C-a>
 map -s <C-v>g<C-x>
 
 " Vim Python Docstring ( https://github.com/pixelneo/vim-python-docstring.git )
+" Vim Python Docstring ( Plug )
 "-=================================================-
-set runtimepath+=~/.vim/bundle/vim-python-docstring
+" set runtimepath+=~/.vim/bundle/vim-python-docstring
 let g:python_style = 'google'
 
 " Vim Flake8 ( https://github.com/nvie/vim-flake8.git )
@@ -393,16 +396,22 @@ let g:jedi#show_call_signatures = 0
 " let g:syntastic_check_on_open = 0
 " let g:syntastic_check_on_wq = 0
 
-" Kite ( Plug )
+" Harpoon ( Plug: c64cosmin/Harpwn )
 "-=================================================-
-" let g:kite_supported_languages = ['python']
-
-" Ropevim ( Plug: python-rope/ropevim )
-"-=================================================-
-" set runtimepath+=~/.vim/bundle/ropevim/ftplugin/python_ropevim.vim 
-" let ropevim_vim_completion=1
-" let ropevim_extended_complete=1
-" let g:ropevim_autoimport_modules = ["os", \"shutil\"]
+nnoremap <silent> + :HarpwnAdd<CR>
+nnoremap <silent> - :HarpwnMenu<CR>
+nnoremap <silent> > :HarpwnNext 1<CR>
+nnoremap <silent> < :HarpwnNext -1<CR>
+nnoremap <silent> g1 :HarpwnGo 0<CR>
+nnoremap <silent> g2 :HarpwnGo 1<CR>
+nnoremap <silent> g3 :HarpwnGo 2<CR>
+nnoremap <silent> g4 :HarpwnGo 3<CR>
+nnoremap <silent> g5 :HarpwnGo 4<CR>
+nnoremap <silent> g6 :HarpwnGo 5<CR>
+nnoremap <silent> g7 :HarpwnGo 6<CR>
+nnoremap <silent> g8 :HarpwnGo 7<CR>
+nnoremap <silent> g9 :HarpwnGo 8<CR>
+nnoremap <silent> g0 :HarpwnGo 9<CR>
 
 if &diff
   " colorscheme evening
