@@ -33,8 +33,9 @@ elif [ "$SUSE" -ne -1 ]; then
 
 # otherwise its arch?
 else
-	INSTALL='pacman -S'
-	YES='--noconfirm'
+	INSTALL='brew install'
+	#INSTALL='pacman -S'
+	#YES='--noconfirm'
 fi
 
 # fedora 22 and later uses dnf
@@ -44,16 +45,16 @@ if [ "$ID" == "fedora" ]  && [ "$VERSION_ID" -ge "22" ]; then
 fi
 
 # install vim
-eval "sudo $INSTALL vim $YES"
+eval "$INSTALL vim $YES"
 
 # install tmux
-eval "sudo $INSTALL tmux $YES"
+eval "$INSTALL tmux $YES"
 
 # install git
-eval "sudo $INSTALL git $YES"
+eval "$INSTALL git $YES"
 
 # htop
-eval "sudo $INSTALL htop $YES"
+eval "$INSTALL htop $YES"
 
 # install i3 and other dependencies
 #eval "sudo $INSTALL i3 i3status dmenu i3lock xbacklight feh conky $YES"
@@ -68,7 +69,7 @@ eval "sudo $INSTALL htop $YES"
 #eval "sudo $INSTALL ntpdate $YES"
 
 # install cscope
-eval "sudo $INSTALL cscope $YES"
+eval "$INSTALL cscope $YES"
 
 # Example for installing Vundle, the Vim dependency manager
 git clone https://github.com/ctrlpvim/ctrlp.vim.git  ~/.vim/bundle/ctrlp.vim
